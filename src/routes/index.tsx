@@ -8,7 +8,7 @@ function Index() {
   return (
     <div className="text-center">
       <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
-        Welcome to CS Collection!
+        Welcome to Counter Strike Collection!
       </h2>
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
         Explore Counter-Strike skins and stickers from the community

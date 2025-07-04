@@ -9,27 +9,15 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as StickersNewRouteImport } from './routes/stickers-new'
 import { Route as StickersRouteImport } from './routes/stickers'
-import { Route as SkinsNewRouteImport } from './routes/skins-new'
 import { Route as SkinsRouteImport } from './routes/skins'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
-const StickersNewRoute = StickersNewRouteImport.update({
-  id: '/stickers-new',
-  path: '/stickers-new',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const StickersRoute = StickersRouteImport.update({
   id: '/stickers',
   path: '/stickers',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SkinsNewRoute = SkinsNewRouteImport.update({
-  id: '/skins-new',
-  path: '/skins-new',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SkinsRoute = SkinsRouteImport.update({
@@ -58,18 +46,14 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/settings': typeof SettingsRoute
   '/skins': typeof SkinsRoute
-  '/skins-new': typeof SkinsNewRoute
   '/stickers': typeof StickersRoute
-  '/stickers-new': typeof StickersNewRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/settings': typeof SettingsRoute
   '/skins': typeof SkinsRoute
-  '/skins-new': typeof SkinsNewRoute
   '/stickers': typeof StickersRoute
-  '/stickers-new': typeof StickersNewRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -77,38 +61,14 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/settings': typeof SettingsRoute
   '/skins': typeof SkinsRoute
-  '/skins-new': typeof SkinsNewRoute
   '/stickers': typeof StickersRoute
-  '/stickers-new': typeof StickersNewRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/about'
-    | '/settings'
-    | '/skins'
-    | '/skins-new'
-    | '/stickers'
-    | '/stickers-new'
+  fullPaths: '/' | '/about' | '/settings' | '/skins' | '/stickers'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/about'
-    | '/settings'
-    | '/skins'
-    | '/skins-new'
-    | '/stickers'
-    | '/stickers-new'
-  id:
-    | '__root__'
-    | '/'
-    | '/about'
-    | '/settings'
-    | '/skins'
-    | '/skins-new'
-    | '/stickers'
-    | '/stickers-new'
+  to: '/' | '/about' | '/settings' | '/skins' | '/stickers'
+  id: '__root__' | '/' | '/about' | '/settings' | '/skins' | '/stickers'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -116,32 +76,16 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   SettingsRoute: typeof SettingsRoute
   SkinsRoute: typeof SkinsRoute
-  SkinsNewRoute: typeof SkinsNewRoute
   StickersRoute: typeof StickersRoute
-  StickersNewRoute: typeof StickersNewRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/stickers-new': {
-      id: '/stickers-new'
-      path: '/stickers-new'
-      fullPath: '/stickers-new'
-      preLoaderRoute: typeof StickersNewRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/stickers': {
       id: '/stickers'
       path: '/stickers'
       fullPath: '/stickers'
       preLoaderRoute: typeof StickersRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/skins-new': {
-      id: '/skins-new'
-      path: '/skins-new'
-      fullPath: '/skins-new'
-      preLoaderRoute: typeof SkinsNewRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/skins': {
@@ -180,9 +124,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   SettingsRoute: SettingsRoute,
   SkinsRoute: SkinsRoute,
-  SkinsNewRoute: SkinsNewRoute,
   StickersRoute: StickersRoute,
-  StickersNewRoute: StickersNewRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

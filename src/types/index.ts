@@ -10,6 +10,10 @@ export interface Skin {
   image: string;
   min_float: number | null;
   max_float: number | null;
+  category: {
+    name: string;
+    id: string;
+  };
 }
 
 export interface Sticker {
@@ -22,5 +26,5 @@ export interface Sticker {
     name: string;
     color: string;
   };
-  price?: number; // Making price optional since it might not be in the API
+  price?: number;
 }

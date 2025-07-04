@@ -3,9 +3,9 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import LoadingSpinner from "../components/LoadingSpinner";
 import StickerItem from "../components/StickerItem";
-import createStickerQueryOptions from "../queryOptions/createStickerQueryOptions";
 import { useUserPreferences } from "../hooks/useUserPreferences";
 import type { Sticker } from "../types";
+import createStickerQueryOptions from "../queryOptions/createStickerQueryOptions";
 
 export const Route = createFileRoute("/stickers")({
   component: StickersPage,
@@ -13,7 +13,7 @@ export const Route = createFileRoute("/stickers")({
 
 function StickersPage() {
   const stickersQuery = useSuspenseQuery(createStickerQueryOptions());
-  const { preferences, toggleFavorite, isFavorite } = useUserPreferences();
+  const { preferences } = useUserPreferences();
   const [sortBy, setSortBy] = useState<"name" | "rarity">("name");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
 
@@ -35,11 +35,8 @@ function StickersPage() {
 
   const handleStickerClick = (sticker: Sticker) => {
     console.log("Selected sticker:", sticker.name);
-    // Toggle favorite when clicking on a sticker
-    toggleFavorite(sticker.id);
   };
 
-  // Sort stickers based on preferences
   const sortedStickers = [...(stickersQuery.data as Sticker[])].sort((a, b) => {
     let comparison = 0;
 
@@ -97,16 +94,8 @@ function StickersPage() {
                     sticker={sticker}
                     size="medium"
                     onClick={handleStickerClick}
-                    className={`hover:shadow-2xl transition-all duration-200 ${
-                      isFavorite(sticker.id) ? "ring-2 ring-yellow-400" : ""
-                    }`}
+                    className={`hover:shadow-2xl transition-all duration-200`}
                   />
-                  {/* Favorite indicator */}
-                  {isFavorite(sticker.id) && (
-                    <div className="absolute top-2 right-2 text-yellow-400 text-xl">
-                      ⭐
-                    </div>
-                  )}
                 </div>
               ))}
           </div>
