@@ -33,6 +33,18 @@ export const Route = createRootRoute({
                 Stickers
               </Link>
               <Link
+                to="/collection"
+                className="px-6 py-3 rounded-md text-sm font-medium transition-all duration-200 [&.active]:bg-blue-500 [&.active]:text-white text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700"
+              >
+                Collections
+              </Link>
+              <Link
+                to="/crates"
+                className="px-6 py-3 rounded-md text-sm font-medium transition-all duration-200 [&.active]:bg-blue-500 [&.active]:text-white text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700"
+              >
+                Cases
+              </Link>
+              <Link
                 to="/settings"
                 className="px-6 py-3 rounded-md text-sm font-medium transition-all duration-200 [&.active]:bg-blue-500 [&.active]:text-white text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700"
               >

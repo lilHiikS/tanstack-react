@@ -12,6 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as StickersRouteImport } from './routes/stickers'
 import { Route as SkinsRouteImport } from './routes/skins'
 import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as CratesRouteImport } from './routes/crates'
+import { Route as CollectionRouteImport } from './routes/collection'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -30,6 +32,16 @@ const SettingsRoute = SettingsRouteImport.update({
   path: '/settings',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CratesRoute = CratesRouteImport.update({
+  id: '/crates',
+  path: '/crates',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CollectionRoute = CollectionRouteImport.update({
+  id: '/collection',
+  path: '/collection',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
@@ -44,6 +56,8 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/collection': typeof CollectionRoute
+  '/crates': typeof CratesRoute
   '/settings': typeof SettingsRoute
   '/skins': typeof SkinsRoute
   '/stickers': typeof StickersRoute
@@ -51,6 +65,8 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/collection': typeof CollectionRoute
+  '/crates': typeof CratesRoute
   '/settings': typeof SettingsRoute
   '/skins': typeof SkinsRoute
   '/stickers': typeof StickersRoute
@@ -59,21 +75,47 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/collection': typeof CollectionRoute
+  '/crates': typeof CratesRoute
   '/settings': typeof SettingsRoute
   '/skins': typeof SkinsRoute
   '/stickers': typeof StickersRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/settings' | '/skins' | '/stickers'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/collection'
+    | '/crates'
+    | '/settings'
+    | '/skins'
+    | '/stickers'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/settings' | '/skins' | '/stickers'
-  id: '__root__' | '/' | '/about' | '/settings' | '/skins' | '/stickers'
+  to:
+    | '/'
+    | '/about'
+    | '/collection'
+    | '/crates'
+    | '/settings'
+    | '/skins'
+    | '/stickers'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/collection'
+    | '/crates'
+    | '/settings'
+    | '/skins'
+    | '/stickers'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  CollectionRoute: typeof CollectionRoute
+  CratesRoute: typeof CratesRoute
   SettingsRoute: typeof SettingsRoute
   SkinsRoute: typeof SkinsRoute
   StickersRoute: typeof StickersRoute
@@ -102,6 +144,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SettingsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/crates': {
+      id: '/crates'
+      path: '/crates'
+      fullPath: '/crates'
+      preLoaderRoute: typeof CratesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/collection': {
+      id: '/collection'
+      path: '/collection'
+      fullPath: '/collection'
+      preLoaderRoute: typeof CollectionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -122,6 +178,8 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  CollectionRoute: CollectionRoute,
+  CratesRoute: CratesRoute,
   SettingsRoute: SettingsRoute,
   SkinsRoute: SkinsRoute,
   StickersRoute: StickersRoute,

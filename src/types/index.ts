@@ -28,3 +28,37 @@ export interface Sticker {
   };
   price?: number;
 }
+
+export interface Collection {
+  id: string;
+  name: string;
+  image: string;
+  contains: [
+    {
+      id: string;
+      name: string;
+      rarity: {
+        id: string;
+        name: string;
+        color: string;
+      };
+      image: string;
+    },
+  ];
+}
+
+export interface Crates {
+  id: string;
+  name: string;
+  image: string;
+  contains: {
+    id: string;
+    name: string;
+    image: string;
+    rarity: {
+      id: string;
+      name: string;
+      color: string;
+    };
+  }[];
+}
